@@ -59,6 +59,34 @@ class LinkedList:
             self.length -= 1
             return deleted_node
         
+    def prepend(self, value):
+        """Adds a new node with the given value to the beginning of the linked list."""
+        new_node = Node(value)
+        if self.length == 0:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head = new_node
+        self.length += 1
+        return True 
+    
+    def pop_first(self):
+        """Deletes the first node in the linked list."""
+        if self.length == 0:
+            return None
+        elif self.length == 1:
+            deleted_node = self.head
+            self.head = None
+            self.tail = None
+            self.length -= 1
+            return deleted_node
+        else:
+            deleted_node = self.head
+            self.head = self.head.next
+            self.length -= 1
+            return deleted_node
+        
         
 
 # Clear console
@@ -68,3 +96,8 @@ print(my_linked_list.head.value)  # Output: 4
 my_linked_list.append(5)
 print(my_linked_list.tail.value)  # Output: 5
 print(my_linked_list.delete_last_node().value)  # Output: 5
+my_linked_list.print_list()
+my_linked_list.prepend(6)
+my_linked_list.print_list()
+print(my_linked_list.pop_first().value)  # Output: 6
+my_linked_list.print_list()
